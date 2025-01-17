@@ -1,36 +1,35 @@
 package com.edstecno.testincasa.testincasa.domain.entities;
 
+import com.edstecno.testincasa.testincasa.domain.entities.enums.Perfil;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Document(collection = "user")
-public class User implements Serializable {
-
-
+public abstract class User implements Serializable {
+    @Serial
     private static final long serialVersionUID = -1604146369534819349L;
+
     @Id
     private String id;
     private String nome;
     private String email;
-    //private Tipo tipo;
-    @DBRef
-    private List<Perfil> perfil = new ArrayList<>();
-    private List<Endereco> enderecos = new ArrayList<>();
-    private List<Personalidade> personalidades = new ArrayList<>();
+    private String senha;
+    private String imagem;
+    private Integer perfil;
 
     public User() {
     }
 
-    public User(String id, String nome, String email) {
+    public User(String id, String nome, String email, String senha, String imagem, Perfil perfil) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
+        this.imagem = imagem;
+        setPerfil(perfil);
     }
 
     public String getId() {
@@ -57,20 +56,29 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public List<Perfil> getPerfil() {
-        return perfil;
+    public String getSenha() {
+        return senha;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public Perfil getPerfil() {
+        return Perfil.perfilCode(perfil);
+    }
+
+    public void setPerfil(Perfil perfil) {
+        if (perfil != null) {
+            this.perfil = perfil.getCode();
+        }
     }
 }

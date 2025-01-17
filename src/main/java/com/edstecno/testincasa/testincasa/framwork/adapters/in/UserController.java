@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping
+    @GetMapping (value = "")
     public ResponseEntity<List<User>> findAll() {
         List<User> users = userPortIn.findAll();
         return ResponseEntity.ok().body(users);
