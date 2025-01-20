@@ -18,7 +18,7 @@ public abstract class User implements Serializable {
     private String email;
     private String senha;
     private String imagem;
-    private Integer perfil;
+    private Perfil perfil;
 
     public User() {
     }
@@ -73,12 +73,22 @@ public abstract class User implements Serializable {
     }
 
     public Perfil getPerfil() {
-        return Perfil.perfilCode(perfil);
+        return this.perfil;
     }
+
+//    public Perfil getPerfil() {
+//        return Perfil.perfilCode(perfil);
+//    }
+
+//    public void setPerfil(Perfil perfil) {
+//        if (perfil != null) {
+//            this.perfil = perfil.getCode();
+//        }
+//    }
 
     public void setPerfil(Perfil perfil) {
         if (perfil != null) {
-            this.perfil = perfil.getCode();
+            this.perfil = perfil;
         }
     }
 }
