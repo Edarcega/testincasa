@@ -24,5 +24,4 @@ public enum Perfil {
         }
         throw new IllegalArgumentException("Valor de perfil inválido");
     }
-
 }

@@ -16,18 +16,18 @@ final public class Vendedor extends User {
 
     private TipoVendedor tipoVendedor;
 
+    private List<Produto> produtos = new ArrayList<>();
+
     public Vendedor() {
         super();
     }
 
-    public Vendedor(String id, String nome, String email, String senha, String imagem, Perfil perfil, List<Pedido> pedidos, TipoVendedor tipoVendedor) {
+    public Vendedor(String id, String nome, String email, String senha, String imagem, Perfil perfil, TipoVendedor tipoVendedor) {
         super(id, nome, email, senha, imagem, perfil);
-        this.pedidos = pedidos;
         this.tipoVendedor = tipoVendedor;
     }
 
-    public Vendedor(List<Pedido> pedidos, TipoVendedor tipoVendedor) {
-        this.pedidos = pedidos;
+    public Vendedor(TipoVendedor tipoVendedor) {
         this.tipoVendedor = tipoVendedor;
     }
 
@@ -35,4 +35,7 @@ final public class Vendedor extends User {
         this.pedidos = pedidos;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 }
